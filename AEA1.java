@@ -241,15 +241,18 @@ public class AEA1 {
     // 3. CAS PARALELISME (parallelDemo(): tres workers, dos llocs)
     // =========================================================================
     public static void parallelDemo() throws Exception {
-        log("SUPERVISOR", "--- [DEMO 3: PARAL·LELISME (parallelDemo: tres workers, dos llocs)] ---");
+        log("SUPERVISOR", "--- [DEMO 3: PARAL·LELISME (tres workers: Èxit, Error codi 7 i Timeout)] ---");
 
         try (ExecutorService pool = Executors.newFixedThreadPool(2)) {
+            // 1. ALPHA: Finalitza amb èxit (exitCode 0)
             Future<ProcessResult> alpha = pool.submit(() -> supervise(
                     command("worker", "ALPHA", "3", "250", "0"), "Ada\nPol\n", java.time.Duration.ofSeconds(5)));
+            // 2. BETA: Falla de manera controlada amb codi 7 (Activitat B)
             Future<ProcessResult> beta = pool.submit(() -> supervise(
-                    command("worker", "BETA", "3", "350", "0"), "Joana\nNil\n", java.time.Duration.ofSeconds(5)));
+                    command("worker", "BETA", "3", "350", "7"), "Joana\nNil\n", java.time.Duration.ofSeconds(5)));
+            // 3. GAMMA: Es bloqueja (pausa 30s) i el supervisor li aplica timeout de 2s (Activitat D)
             Future<ProcessResult> gamma = pool.submit(() -> supervise(
-                    command("worker", "GAMMA", "3", "200", "0"), "Marc\n", java.time.Duration.ofSeconds(5)));
+                    command("worker", "GAMMA", "3", "10000", "0"), "Marc\n", java.time.Duration.ofSeconds(2)));
 
             List<Future<ProcessResult>> futures = List.of(alpha, beta, gamma);
 

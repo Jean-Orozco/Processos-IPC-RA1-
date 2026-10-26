@@ -1,8 +1,8 @@
 # Pràctica 01: Supervisor de Processos i Comunicació IPC (AEA1 · RA1)
 
 **Mòdul**: MP 0490 - Programació de serveis i processos  
-**Curs**: 2026-2027  
-**Autor**: Alumnat Institut de l'Ebre  
+**Curs**: DAM  
+**Nom**: Jean Pierre Orozco Zubieta
 
 ---
 
@@ -33,11 +33,11 @@ A la demostració de concurrència (`parallelDemo()`), el supervisor utilitza un
 
 | Rol | PID | PPID | Estat observat | Codi retorn | Durada |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Supervisor** | `24400` | `13100` | En execució (R / Sl+) | `0` | - |
-| **Worker ALPHA** | `24493` | `24400` | Finalitzat (execució immediata) | `0` | ~818 ms |
-| **Worker BETA** | `24495` | `24400` | Finalitzat (execució immediata) | `0` | ~1123 ms |
-| **Worker GAMMA** | `24539` | `24400` | Finalitzat (espera a la cua) | `0` | ~659 ms |
-| **Worker Hang (Demo 4)** | `24562` | `24400` | Cancel·lat per timeout (forçat) | `-1` | 2000 ms |
+| **Supervisor** | `50374` | `50221` | En execució (R / Sl+) | `0` | - |
+| **Worker ALPHA** | `50477` | `50374` | Finalitzat correctament (Èxit) | `0` | ~805 ms |
+| **Worker BETA** | `50479` | `50374` | Finalitzat amb error controlat (Activitat B) | `7` | ~1112 ms |
+| **Worker GAMMA** | `50532` | `50374` | Cancel·lat per timeout forçat (Activitat D) | `-1` | ~2020 ms |
+| **Worker Hang (Demo 4)** | `50602` | `50374` | Cancel·lat per timeout (forçat) | `-1` | 2000 ms |
 
 ---
 
