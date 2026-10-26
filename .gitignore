@@ -1,0 +1,10 @@
+# Binarios compilados de Java (no se suben a Git)
+*.class
+
+# Empaquetados autogenerados
+*.jar
+
+# Archivos temporales o de IDE
+.vscode/
+.idea/
+*.iml

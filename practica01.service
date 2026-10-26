@@ -1,0 +1,12 @@
+[Unit]
+Description=Supervisor multiproces - Practica 01
+
+[Service]
+Type=oneshot
+User=alumnat
+WorkingDirectory=/home/alumnat/Documents/Procesos/ProcessosIPC(RA1)
+ExecStart=/usr/bin/java -jar /home/alumnat/Documents/Procesos/ProcessosIPC(RA1)/supervisor.jar
+TimeoutStartSec=90s
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
